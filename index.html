@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M3B MACHINE</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
+}
+
+body{
+background:#0a0a0a;
+color:white;
+overflow-x:hidden;
+}
+
+/* OPEN */
+.open-screen{
+position:fixed;
+width:100%;
+height:100vh;
+background:url("https://www.discoverengineering.org/wp-content/uploads/2023/12/mj_11351_4.jpg") center/cover;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:999;
+transition:1s;
+}
+
+.open-screen.hide{
+opacity:0;
+pointer-events:none;
+}
+
+.open-screen h1{
+font-size:50px;
+text-shadow:0 0 20px black;
+}
+
+.open-btn{
+margin-top:20px;
+padding:12px 30px;
+border:none;
+background:red;
+color:white;
+font-size:18px;
+border-radius:8px;
+cursor:pointer;
+}
+
+/* NAVBAR */
+.navbar{
+background:black;
+border-bottom:3px solid red;
+padding:15px;
+font-size:24px;
+color:red;
+font-weight:bold;
+}
+
+/* HERO */
+.hero{
+height:350px;
+background:url("https://www.singaporetech.edu.sg/sites/default/files/2022-04/mechanical-engineering.jpg") center/cover no-repeat;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+}
+
+.hero h1{
+font-size:42px;
+text-shadow:0 0 20px black;
+}
+
+/* PAGE */
+.page{
+display:none;
+min-height:100vh;
+}
+
+/* PAGE 1 SHOW */
+#page1{
+display:block;
+}
+
+/* SECTION */
+.section{
+padding:20px;
+}
+
+/* ROW */
+.row{
+display:flex;
+flex-wrap:wrap;
+gap:20px;
+}
+
+/* CARD */
+.card{
+width:calc(25% - 20px);
+border-radius:12px;
+overflow:hidden;
+transition:0.3s;
+}
+
+.card:hover{
+transform:scale(1.05);
+}
+
+.card img{
+width:100%;
+height:180px;
+object-fit:cover;
+}
+
+.card-img{
+position:relative;
+}
+
+.card-overlay{
+position:absolute;
+top:0;
+left:0;
+right:0;
+bottom:0;
+background:rgba(0,0,0,0.6);
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+opacity:0;
+transition:0.3s;
+}
+
+.card:hover .card-overlay{
+opacity:1;
+}
+
+/* CONTACT */
+.footer{
+margin-top:50px;
+padding:20px;
+display:flex;
+justify-content:center;
+}
+
+.footer-card{
+width:100%;
+max-width:900px;
+background:#151515;
+border-top:3px solid red;
+padding:20px;
+border-radius:15px;
+}
+
+.info{
+margin:10px 0;
+}
+
+.icon{
+color:red;
+margin-right:8px;
+}
+
+.line-btn{
+display:inline-block;
+margin-top:15px;
+padding:10px 20px;
+background:red;
+color:white;
+border-radius:8px;
+text-decoration:none;
+}
+
+/* BUTTON */
+.page-btn{
+text-align:center;
+margin:40px;
+}
+
+.page-btn button{
+padding:14px 30px;
+background:red;
+border:none;
+color:white;
+border-radius:10px;
+font-size:18px;
+cursor:pointer;
+}
+
+/* GALLERY */
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:20px;
+margin-top:30px;
+}
+
+.gallery img{
+width:100%;
+border-radius:15px;
+border:2px solid red;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+
+.card{
+width:calc(50% - 20px);
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- OPEN SCREEN -->
+<div class="open-screen" id="open">
+<h1>M3B MACHINE</h1>
+
+<button class="open-btn" onclick="enterSite()">
+ENTER
+</button>
+</div>
+
+<!-- ================= PAGE 1 ================= -->
+<div id="page1" class="page">
+
+<div class="navbar">
+M3B MACHINE
+</div>
+
+<div class="hero">
+<h1>SERVICE & MAINTENANCE</h1>
+</div>
+
+<div class="section">
+
+
+
+</div>
+
+<!-- CONTACT -->
+<div class="footer">
+
+<div class="footer-card">
+
+<h2>Contact Information</h2>
+
+<div class="info">
+<i class="fa fa-user icon"></i>
+Kittiphat Worasitkitikul
+</div>
+
+<div class="info">
+<i class="fa fa-building icon"></i>
+M3B Corporatio Co.,Ltd
+</div>
+
+<div class="info">
+<i class="fa fa-location-dot icon"></i>
+657/55 Charansanitwong Rd. , Arun Amarin , Bangkok Noi , Bangkok 10700,Thailand
+</div>
+
+<div class="info">
+<i class="fa fa-phone icon"></i>
+Tel. 096-328-9541| Mobile: 097-224-5459 
+|E-mail: swt2550@gmail.com|kessirin.wora@gmail.com
+</div>
+
+<a href="https://line.me/ti/p/EGs5DMANVY"
+target="_blank"
+class="line-btn">
+Add LINE
+</a>
+
+</div>
+
+</div>
+
+<!-- BUTTON -->
+<div class="page-btn">
+
+<button onclick="showPage2()">
+GO TO PAGE 2
+</button>
+
+</div>
+
+</div>
+</div>
+
+<!-- ================= PAGE 2 ================= -->
+<div id="page2" class="page">
+
+<div class="navbar">
+M3B MACHINE
+</div>
+
+<div class="hero">
+<h1>MACHINE ENGINEERING</h1>
+</div>
+
+<div class="section">
+
+<div class="section fade-up">
+
+<h2>MENU</h2>
+<div class="row">
+
+<!-- cards เหมือนเดิมทั้งหมด -->
+<div class="card fade-up"><a href="https://www.xsight.eu/2000-series-extensometer/" target="_blank">
+<div class="card-img">
+<img src="https://manuals.plus/m/17e1ff21621d120e2f5c433ee4a6f8dbd27731aa44ecd3bf205d24878708091e.png">
+<div class="card-overlay"><h2>X-Sight</h2></div>
+</div></a></div>
+
+<div class="card fade-up"><a href="https://www.testequip.com.au/assets/brochures/ST-1004.pdf" target="_blank">
+<div class="card-img">
+<img src="https://www.light-salt.kr/twcenter/data/banner/banner_1768276045025525.jpg">
+<div class="card-overlay"><h2>ST-1004</h2></div>
+</div></a></div>
+
+<div class="card fade-up">
+<a href="https://tdg.com.tr/en/solutions/seismic-monitoring---early-warning/seismic-monitoring" target="_blank">
+<div class="card-img">
+<img src="https://www.tdgsolutions.uk/cdn/shop/files/unnamed.webp">
+<div class="card-overlay"><h2>TDG</h2><p>Shake Table</p></div>
+</div></a></div>
+
+<div class="card fade-up">
+<a href="https://www.hira.com.tr/en" target="_blank">
+<div class="card-img">
+<img src="https://www.hira.com.tr/Assets/img/enLogo.png">
+<div class="card-overlay"><h2>HIRA</h2><p>Testing Machines</p></div>
+</div></a></div>
+
+<div class="card fade-up">
+<a href="https://moticmicroscopes.com/" target="_blank">
+<div class="card-img">
+<img src="https://mikroskopshop.ch/shop/ProdukteDetails/logos/Motic-Logo-900-900.jpg">
+<div class="card-overlay"><h2>Motic</h2><p>AE 2000 METAL MOTIC</p></div>
+</div></a></div>
+
+<div class="card fade-up">
+<a href="https://www.whrsm.net/" target="_blank">
+<div class="card-img">
+<img src="https://ueeshop.ly200-cdn.com/u_file/UPAA/UPAA075/2109/photo/1a8a793f37.png">
+<div class="card-overlay"><h2>WHRSM</h2><p>Our Platform</p></div>
+</div></a></div>
+
+
+<div class="card fade-up">
+<a href="https://www.baq.de/template.cgi?page=start&lang=en" target="_blank">
+<div class="card-img">
+<img src="https://www.baq.de/mobile/templates/pic/bq_logo_gross.jpg">
+<div class="card-overlay"><h2>BAQ</h2><p>Automatisierungs</p></div>
+</div></a></div>
+
+<div class="card fade-up">
+<a href="http://eng.e-greentech.co.kr/bbs/board.php?bo_table=product02&wr_id=3" target="_blank">
+<div class="card-img">
+<img src="https://www.thescreenology.com/images/content/original-1621660295731.jpg">
+<div class="card-overlay"><h2>Gree Tech</h2><p>Instrumentation & Control
+</p></div>
+</div></a></div>
+
+<div class="card fade-up">
+<a href="https://nabertherm.com/en/products/laboratory/muffle-furnaces" target="_blank">
+<div class="card-img">
+<img src="https://www.cerealtester.com/images/nabertherm_logo.gif">
+<div class="card-overlay"><h2>Nabertherm</h2><p>Laboratory</p></div>
+</div></a></div>
+
+<div class="card fade-up">
+<a href="https://www.dualmfg.com/8-diameter-x-1-or-2-deep-brass-frame-sieves-with-stainless-steel-mesh" target="_blank">
+<div class="card-img">
+<img src="https://www.dualmfg.com/content/images/thumbs/0003446_usa-standard-sieves_420.jpeg">
+<div class="card-overlay"><h2>Dualmfg</h2><p>Manufacturing Co.,Inc.</p></div>
+</div></a></div>
+
+<div class="card fade-up">
+<a href="http://www.forsentek.com/product.html" target="_blank">
+<div class="card-img">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvIIqpiAO01l7bqtfzGeRoQQDLz9phpyGtPg&s">
+<div class="card-overlay"><h2>Measure it right</h2><p>Forsentek</p></div>
+</div></a></div>
+
+</div>
+</div>
+</div>
+
+<div class="page-btn">
+
+<button onclick="showPage3()">
+GO TO PAGE 3
+</button>
+
+</div>
+
+</div>
+</div>
+
+<!-- ================= PAGE 3 ================= -->
+<div id="page3" class="page">
+
+<div class="navbar">
+M3B MACHINE
+</div>
+
+<div class="hero">
+<h1>PAGE 3</h1>
+</div>
+
+<div style="
+padding:100px 20px;
+text-align:center;
+">
+
+<h1 style="font-size:50px;">
+WELCOME TO PAGE 3
+</h1>
+
+<p style="
+margin-top:20px;
+font-size:22px;
+">
+M3B MACHINE ENGINEERING
+</p>
+
+<div class="page-btn">
+
+<button onclick="showPage1()">
+BACK TO HOME
+</button>
+
+</div>
+
+</div>
+</div>
+
+<script>
+
+function enterSite(){
+document.getElementById("open").classList.add("hide");
+}
+
+/* PAGE SWITCH */
+
+function showPage1(){
+
+document.getElementById("page1").style.display="block";
+document.getElementById("page2").style.display="none";
+document.getElementById("page3").style.display="none";
+
+window.scrollTo(0,0);
+
+}
+
+function showPage2(){
+
+document.getElementById("page1").style.display="none";
+document.getElementById("page2").style.display="block";
+document.getElementById("page3").style.display="none";
+
+window.scrollTo(0,0);
+
+}
+
+function showPage3(){
+
+document.getElementById("page1").style.display="none";
+document.getElementById("page2").style.display="none";
+document.getElementById("page3").style.display="block";
+
+window.scrollTo(0,0);
+
+}
+
+</script>
+
+</body>
+</html>

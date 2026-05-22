@@ -1,495 +1,692 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>M3B MACHINE</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M3B MACHINE | ENGINEERING SOLUTIONS</title>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
 
-<style>
+    <style>
+        :root {
+            --bg-dark: #050505;
+            --bg-card: rgba(20, 20, 20, 0.7);
+            --primary-neon: #ff2a2a;
+            --primary-glow: rgba(255, 42, 42, 0.4);
+            --text-main: #ffffff;
+            --text-muted: #a0a0a0;
+            --border-color: rgba(255, 255, 255, 0.08);
+        }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Rajdhani', 'Kanit', sans-serif;
+        }
 
-body{
-background:#0a0a0a;
-color:white;
-overflow-x:hidden;
-}
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(255, 0, 0, 0.05) 0px, transparent 50%),
+                radial-gradient(at 50% 100%, rgba(255, 0, 0, 0.03) 0px, transparent 50%);
+        }
 
-/* OPEN */
-.open-screen{
-position:fixed;
-width:100%;
-height:100vh;
-background:url("https://www.discoverengineering.org/wp-content/uploads/2023/12/mj_11351_4.jpg") center/cover;
-display:flex;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-z-index:999;
-transition:1s;
-}
+        /* INTRO OPEN SCREEN */
+        .open-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.6), #000), url("https://www.discoverengineering.org/wp-content/uploads/2023/12/mj_11351_4.jpg") center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 9999;
+            transition: all 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+        }
 
-.open-screen.hide{
-opacity:0;
-pointer-events:none;
-}
+        .open-screen.hide {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
 
-.open-screen h1{
-font-size:50px;
-text-shadow:0 0 20px black;
-}
+        .open-screen h1 {
+            font-size: 64px;
+            font-weight: 700;
+            letter-spacing: 6px;
+            color: #fff;
+            text-shadow: 0 0 20px var(--primary-glow);
+            margin-bottom: 30px;
+        }
 
-.open-btn{
-margin-top:20px;
-padding:12px 30px;
-border:none;
-background:red;
-color:white;
-font-size:18px;
-border-radius:8px;
-cursor:pointer;
-}
+        .open-btn {
+            padding: 15px 40px;
+            border: 2px solid var(--primary-neon);
+            background: transparent;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 50px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: 0.4s;
+            box-shadow: 0 0 15px var(--primary-glow);
+        }
 
-/* NAVBAR */
-.navbar{
-background:black;
-border-bottom:3px solid red;
-padding:15px;
-font-size:24px;
-color:red;
-font-weight:bold;
-}
+        .open-btn:hover {
+            background: var(--primary-neon);
+            box-shadow: 0 0 30px var(--primary-neon);
+            transform: scale(1.05);
+        }
 
-/* HERO */
-.hero{
-height:350px;
-background:url("https://www.singaporetech.edu.sg/sites/default/files/2022-04/mechanical-engineering.jpg") center/cover no-repeat;
-display:flex;
-justify-content:center;
-align-items:center;
-text-align:center;
-}
+        /* GLOBAL NAVBAR */
+        .navbar {
+            background: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 20px 50px;
+            font-size: 28px;
+            color: var(--text-main);
+            font-weight: 700;
+            letter-spacing: 3px;
+            position: sticky;
+            top: 0;
+            z-index: 99;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
 
-.hero h1{
-font-size:42px;
-text-shadow:0 0 20px black;
-}
+        .navbar span {
+            color: var(--primary-neon);
+        }
 
-/* PAGE */
-.page{
-display:none;
-min-height:100vh;
-}
+        /* HERO SECTION */
+        .hero {
+            height: 450px;
+            background: linear-gradient(180deg, rgba(5,5,5,0.2) 0%, #050505 100%), url("https://www.singaporetech.edu.sg/sites/default/files/2022-04/mechanical-engineering.jpg") center/cover no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
 
-/* PAGE 1 SHOW */
-#page1{
-display:block;
-}
+        .hero-content h1 {
+            font-size: 56px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            background: linear-gradient(to right, #fff, #888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
 
-/* SECTION */
-.section{
-padding:20px;
-}
+        .hero-content p {
+            font-size: 18px;
+            color: var(--primary-neon);
+            letter-spacing: 5px;
+            margin-top: 10px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
 
-/* ROW */
-.row{
-display:flex;
-flex-wrap:wrap;
-gap:20px;
-}
+        /* PAGE CONTROL */
+        .page {
+            display: none;
+            animation: fadeIn 0.8s ease forwards;
+        }
 
-/* CARD */
-.card{
-width:calc(25% - 20px);
-border-radius:12px;
-overflow:hidden;
-transition:0.3s;
-}
+        #page1 { display: block; }
 
-.card:hover{
-transform:scale(1.05);
-}
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-.card img{
-width:100%;
-height:180px;
-object-fit:cover;
-}
+        /* SECTION LAYOUT */
+        .section {
+            padding: 60px 10%;
+        }
 
-.card-img{
-position:relative;
-}
+        .section-title {
+            font-size: 36px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+        }
 
-.card-overlay{
-position:absolute;
-top:0;
-left:0;
-right:0;
-bottom:0;
-background:rgba(0,0,0,0.6);
-display:flex;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-opacity:0;
-transition:0.3s;
-}
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px; left: 0;
+            width: 50%; height: 3px;
+            background: var(--primary-neon);
+            box-shadow: 0 0 10px var(--primary-neon);
+        }
 
-.card:hover .card-overlay{
-opacity:1;
-}
+        /* MODERN GRID PRODUCTS */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
 
-/* CONTACT */
-.footer{
-margin-top:50px;
-padding:20px;
-display:flex;
-justify-content:center;
-}
+        /* FUTURISTIC GLASS CARD */
+        .modern-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+        }
 
-.footer-card{
-width:100%;
-max-width:900px;
-background:#151515;
-border-top:3px solid red;
-padding:20px;
-border-radius:15px;
-}
+        .modern-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255,42,42,0.1), transparent);
+            transform: translateX(-100%);
+            transition: 0.6s;
+        }
 
-.info{
-margin:10px 0;
-}
+        .modern-card:hover::before {
+            transform: translateX(100%);
+        }
 
-.icon{
-color:red;
-margin-right:8px;
-}
+        .modern-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-neon);
+            box-shadow: 0 10px 30px rgba(255, 42, 42, 0.15);
+        }
 
-.line-btn{
-display:inline-block;
-margin-top:15px;
-padding:10px 20px;
-background:red;
-color:white;
-border-radius:8px;
-text-decoration:none;
-}
+        .card-image-box {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            background: #111;
+        }
 
-/* BUTTON */
-.page-btn{
-text-align:center;
-margin:40px;
-}
+        .card-image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
 
-.page-btn button{
-padding:14px 30px;
-background:red;
-border:none;
-color:white;
-border-radius:10px;
-font-size:18px;
-cursor:pointer;
-}
+        .modern-card:hover .card-image-box img {
+            transform: scale(1.1);
+        }
 
-/* GALLERY */
-.gallery{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:20px;
-margin-top:30px;
-}
+        /* Tag สำหรับแยกหมวดหมู่อุปกรณ์ */
+        .card-badge {
+            position: absolute;
+            top: 15px; right: 15px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid var(--primary-neon);
+            color: #fff;
+            padding: 4px 12px;
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 4px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
 
-.gallery img{
-width:100%;
-border-radius:15px;
-border:2px solid red;
-}
+        .card-body {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.5) 100%);
+        }
 
-/* MOBILE */
-@media(max-width:768px){
+        .card-body h3 {
+            color: var(--text-main);
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
 
-.card{
-width:calc(50% - 20px);
-}
+        .card-body p {
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
 
-}
+        .card-action-btn {
+            margin-top: auto;
+            color: var(--primary-neon);
+            font-weight: 600;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
 
-</style>
+        .card-action-btn i {
+            transition: transform 0.3s ease;
+        }
+
+        .modern-card:hover .card-action-btn i {
+            transform: translateX(5px);
+        }
+
+        /* FUTURISTIC INFO FOOTER */
+        .footer-section {
+            background: linear-gradient(180deg, transparent, #0f0202);
+            padding: 60px 10%;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .modern-footer-card {
+            background: rgba(15, 15, 15, 0.8);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--primary-neon);
+            padding: 40px;
+            border-radius: 16px;
+            max-width: 1000px;
+            margin: 0 auto;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .footer-grid { grid-template-columns: 1fr; gap: 20px;}
+        }
+
+        .footer-title {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 18px;
+            font-size: 15px;
+            color: #d0d0d0;
+            line-height: 1.6;
+        }
+
+        .info-item i {
+            color: var(--primary-neon);
+            font-size: 18px;
+            margin-top: 4px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .line-neon-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #06C755;
+            color: white;
+            padding: 14px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            letter-spacing: 1px;
+            margin-top: 15px;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(6, 199, 85, 0.3);
+        }
+
+        .line-neon-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(6, 199, 85, 0.5);
+        }
+
+        /* NAVIGATION BUTTONS */
+        .nav-actions {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .glow-btn {
+            padding: 15px 35px;
+            background: transparent;
+            border: 2px solid var(--primary-neon);
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 0 15px rgba(255, 42, 42, 0.2);
+        }
+
+        .glow-btn:hover {
+            background: var(--primary-neon);
+            box-shadow: 0 0 25px var(--primary-neon);
+            transform: translateY(-2px);
+        }
+
+        /* ANIMATION DELAY FADE UP */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .fade-in-up.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
-
 <body>
 
-<!-- OPEN SCREEN -->
-<div class="open-screen" id="open">
-<h1>M3B MACHINE</h1>
-
-<button class="open-btn" onclick="enterSite()">
-ENTER
-</button>
-</div>
-
-<!-- ================= PAGE 1 ================= -->
-<div id="page1" class="page">
-
-<div class="navbar">
-M3B MACHINE
-</div>
-
-<div class="hero">
-<h1>SERVICE & MAINTENANCE</h1>
-</div>
-
-<div class="section">
-
-
-
-</div>
-
-<!-- CONTACT -->
-<div class="footer">
-
-<div class="footer-card">
-
-<h2>Contact Information</h2>
-
-<div class="info">
-<i class="fa fa-user icon"></i>
-Kittiphat Worasitkitikul
-</div>
-
-<div class="info">
-<i class="fa fa-building icon"></i>
-M3B Corporatio Co.,Ltd
-</div>
-
-<div class="info">
-<i class="fa fa-location-dot icon"></i>
-657/55 Charansanitwong Rd. , Arun Amarin , Bangkok Noi , Bangkok 10700,Thailand
-</div>
-
-<div class="info">
-<i class="fa fa-phone icon"></i>
-Tel. 096-328-9541| Mobile: 097-224-5459 
-|E-mail: swt2550@gmail.com|kessirin.wora@gmail.com
-</div>
-
-<a href="https://line.me/ti/p/EGs5DMANVY"
-target="_blank"
-class="line-btn">
-Add LINE
-</a>
-
-</div>
-
-</div>
-
-<!-- BUTTON -->
-<div class="page-btn">
-
-<button onclick="showPage2()">
-GO TO PAGE 2
-</button>
-
-</div>
-
-</div>
-</div>
-
-<!-- ================= PAGE 2 ================= -->
-<div id="page2" class="page">
-
-<div class="navbar">
-M3B MACHINE
-</div>
-
-<div class="hero">
-<h1>MACHINE ENGINEERING</h1>
-</div>
-
-<div class="section">
-
-<div class="section fade-up">
-
-<h2>MENU</h2>
-<div class="row">
-
-<!-- cards เหมือนเดิมทั้งหมด -->
-<div class="card fade-up"><a href="https://www.xsight.eu/2000-series-extensometer/" target="_blank">
-<div class="card-img">
-<img src="https://manuals.plus/m/17e1ff21621d120e2f5c433ee4a6f8dbd27731aa44ecd3bf205d24878708091e.png">
-<div class="card-overlay"><h2>X-Sight</h2></div>
-</div></a></div>
-
-<div class="card fade-up"><a href="https://www.testequip.com.au/assets/brochures/ST-1004.pdf" target="_blank">
-<div class="card-img">
-<img src="https://www.light-salt.kr/twcenter/data/banner/banner_1768276045025525.jpg">
-<div class="card-overlay"><h2>ST-1004</h2></div>
-</div></a></div>
-
-<div class="card fade-up">
-<a href="https://tdg.com.tr/en/solutions/seismic-monitoring---early-warning/seismic-monitoring" target="_blank">
-<div class="card-img">
-<img src="https://www.tdgsolutions.uk/cdn/shop/files/unnamed.webp">
-<div class="card-overlay"><h2>TDG</h2><p>Shake Table</p></div>
-</div></a></div>
-
-<div class="card fade-up">
-<a href="https://www.hira.com.tr/en" target="_blank">
-<div class="card-img">
-<img src="https://www.hira.com.tr/Assets/img/enLogo.png">
-<div class="card-overlay"><h2>HIRA</h2><p>Testing Machines</p></div>
-</div></a></div>
-
-<div class="card fade-up">
-<a href="https://moticmicroscopes.com/" target="_blank">
-<div class="card-img">
-<img src="https://mikroskopshop.ch/shop/ProdukteDetails/logos/Motic-Logo-900-900.jpg">
-<div class="card-overlay"><h2>Motic</h2><p>AE 2000 METAL MOTIC</p></div>
-</div></a></div>
-
-<div class="card fade-up">
-<a href="https://www.whrsm.net/" target="_blank">
-<div class="card-img">
-<img src="https://ueeshop.ly200-cdn.com/u_file/UPAA/UPAA075/2109/photo/1a8a793f37.png">
-<div class="card-overlay"><h2>WHRSM</h2><p>Our Platform</p></div>
-</div></a></div>
-
-
-<div class="card fade-up">
-<a href="https://www.baq.de/template.cgi?page=start&lang=en" target="_blank">
-<div class="card-img">
-<img src="https://www.baq.de/mobile/templates/pic/bq_logo_gross.jpg">
-<div class="card-overlay"><h2>BAQ</h2><p>Automatisierungs</p></div>
-</div></a></div>
-
-<div class="card fade-up">
-<a href="http://eng.e-greentech.co.kr/bbs/board.php?bo_table=product02&wr_id=3" target="_blank">
-<div class="card-img">
-<img src="https://www.thescreenology.com/images/content/original-1621660295731.jpg">
-<div class="card-overlay"><h2>Gree Tech</h2><p>Instrumentation & Control
-</p></div>
-</div></a></div>
-
-<div class="card fade-up">
-<a href="https://nabertherm.com/en/products/laboratory/muffle-furnaces" target="_blank">
-<div class="card-img">
-<img src="https://www.cerealtester.com/images/nabertherm_logo.gif">
-<div class="card-overlay"><h2>Nabertherm</h2><p>Laboratory</p></div>
-</div></a></div>
-
-<div class="card fade-up">
-<a href="https://www.dualmfg.com/8-diameter-x-1-or-2-deep-brass-frame-sieves-with-stainless-steel-mesh" target="_blank">
-<div class="card-img">
-<img src="https://www.dualmfg.com/content/images/thumbs/0003446_usa-standard-sieves_420.jpeg">
-<div class="card-overlay"><h2>Dualmfg</h2><p>Manufacturing Co.,Inc.</p></div>
-</div></a></div>
-
-<div class="card fade-up">
-<a href="http://www.forsentek.com/product.html" target="_blank">
-<div class="card-img">
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvIIqpiAO01l7bqtfzGeRoQQDLz9phpyGtPg&s">
-<div class="card-overlay"><h2>Measure it right</h2><p>Forsentek</p></div>
-</div></a></div>
-
-</div>
-</div>
-</div>
-
-<div class="page-btn">
-
-<button onclick="showPage3()">
-GO TO PAGE 3
-</button>
-
-</div>
-
-</div>
-</div>
-
-<!-- ================= PAGE 3 ================= -->
-<div id="page3" class="page">
-
-<div class="navbar">
-M3B MACHINE
-</div>
-
-<div class="hero">
-<h1>PAGE 3</h1>
-</div>
-
-<div style="
-padding:100px 20px;
-text-align:center;
-">
-
-<h1 style="font-size:50px;">
-WELCOME TO PAGE 3
-</h1>
-
-<p style="
-margin-top:20px;
-font-size:22px;
-">
-M3B MACHINE ENGINEERING
-</p>
-
-<div class="page-btn">
-
-<button onclick="showPage1()">
-BACK TO HOME
-</button>
-
-</div>
-
-</div>
-</div>
-
-<script>
-
-function enterSite(){
-document.getElementById("open").classList.add("hide");
-}
-
-/* PAGE SWITCH */
-
-function showPage1(){
-
-document.getElementById("page1").style.display="block";
-document.getElementById("page2").style.display="none";
-document.getElementById("page3").style.display="none";
-
-window.scrollTo(0,0);
-
-}
-
-function showPage2(){
-
-document.getElementById("page1").style.display="none";
-document.getElementById("page2").style.display="block";
-document.getElementById("page3").style.display="none";
-
-window.scrollTo(0,0);
-
-}
-
-function showPage3(){
-
-document.getElementById("page1").style.display="none";
-document.getElementById("page2").style.display="none";
-document.getElementById("page3").style.display="block";
-
-window.scrollTo(0,0);
-
-}
-
-</script>
-
+    <div class="open-screen" id="open">
+        <h1>M3B MACHINE</h1>
+        <button class="open-btn" onclick="enterSite()">Enter Platform</button>
+    </div>
+
+    <div id="page1" class="page">
+        <div class="navbar">
+            <div>M3B <span>MACHINE</span></div>
+        </div>
+        
+        <div class="hero">
+            <div class="hero-content">
+                <h1>Service & Maintenance</h1>
+                <p>Industrial Engineering Excellence</p>
+            </div>
+        </div>
+
+        <div class="footer-section">
+            <div class="modern-footer-card">
+                <div class="footer-grid">
+                    <div>
+                        <h2 class="footer-title">Corporate Profile</h2>
+                        <div class="info-item">
+                            <i class="fa-solid fa-building"></i>
+                            <div><strong>M3B Corporation Co.,Ltd</strong></div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fa-solid fa-user"></i>
+                            <div>Authorized Contact: Kittiphat Worasitkitikul</div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <div>657/55 Charansanitwong Rd., Arun Amarin, Bangkok Noi, Bangkok 10700, Thailand</div>
+                        </div>
+                    </div>
+                    <div>
+                        <h2 class="footer-title">Direct Channels</h2>
+                        <div class="info-item">
+                            <i class="fa-solid fa-phone"></i>
+                            <div>Tel: 096-328-9541<br>Mobile: 097-224-5459</div>
+                        </div>
+                        <div class="info-item">
+                            <i class="fa-solid fa-envelope"></i>
+                            <div>swt2550@gmail.com<br>kessirin.wora@gmail.com</div>
+                        </div>
+                        <a href="https://line.me/ti/p/EGs5DMANVY" target="_blank" rel="noopener noreferrer" class="line-neon-btn">
+                            <i class="fab fa-line" style="font-size: 22px;"></i> Connect via LINE
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-actions">
+            <button class="glow-btn" onclick="showPage2()">Explore Equipment Catalog <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+    </div>
+
+    <div id="page2" class="page">
+        <div class="navbar">
+            <div>M3B <span>MACHINE</span></div>
+        </div>
+
+        <div class="hero">
+            <div class="hero-content">
+                <h1>Machine Engineering</h1>
+                <p>High-Precision Hardware & Testing Infrastructure</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Equipment Systems</h2>
+            
+            <div class="grid-container">
+                <a href="https://www.xsight.eu/2000-series-extensometer/" target="_blank" rel="noopener noreferrer" class="modern-card fade-in-up">
+                    <div class="card-image-box">
+                        <span class="card-badge">Extensometer</span>
+                        <img src="https://manuals.plus/m/17e1ff21621d120e2f5c433ee4a6f8dbd27731aa44ecd3bf205d24878708091e.png" alt="X-Sight">
+                    </div>
+                    <div class="card-body">
+                        <h3>X-Sight</h3>
+                        <p>Advanced 2000 Series high-precision extensometer optical solutions.</p>
+                        <span class="card-action-btn">View Datasheet <i class="fa-solid fa-chevron-right"></i></span>
+                    </div>
+                </a>
+
+                <a href="https://www.testequip.com.au/assets/brochures/ST-1004.pdf" target="_blank" rel="noopener noreferrer" class="modern-card fade-in-up">
+                    <div class="card-image-box">
+                        <span class="card-badge">Testing Spec</span>
+                        <img src="https://www.light-salt.kr/twcenter/data/banner/banner_1768276045025525.jpg" alt="ST-1004">
+                    </div>
+                    <div class="card-body">
+                        <h3>ST-1004 System</h3>
+                        <p>Comprehensive material validation and calibration infrastructure.</p>
+                        <span class="card-action-btn">View Datasheet <i class="fa-solid fa-chevron-right"></i></span>
+                    </div>
+                </a>
+
+                <a href="https://tdg.com.tr/en/solutions/seismic-monitoring---early-warning/seismic-monitoring" target="_blank" rel="noopener noreferrer" class="modern-card fade-in-up">
+                    <div class="card-image-box">
+                        <span class="card-badge">Seismic</span>
+                        <img src="https://www.tdgsolutions.uk/cdn/shop/files/unnamed.webp" alt="TDG">
+                    </div>
+                    <div class="card-body">
+                        <h3>TDG Shake Table</h3>
+                        <p>High-end structural seismic simulation and data monitoring systems.</p>
+                        <span class="card-action-btn">View Datasheet <i class="fa-solid fa-chevron-right"></i></span>
+                    </div>
+                </a>
+
+                <a href="https://www.hira.com.tr/en" target="_blank" rel="noopener noreferrer" class="modern-card fade-in-up">
+                    <div class="card-image-box">
+                        <span class="card-badge">Testing Machine</span>
+                        <img src="https://www.hira.com.tr/Assets/img/enLogo.png" alt="HIRA">
+                    </div>
+                    <div class="card-body">
+                        <h3>HIRA Testing</h3>
+                        <p>Industrial grade civil materials quality testing machineries.</p>
+                        <span class="card-action-btn">View Datasheet <i class="fa-solid fa-chevron-right"></i></span>
+                    </div>
+                </a>
+
+                <a href="https://moticmicroscopes.com/" target="_blank" rel="noopener noreferrer" class="modern-card fade-in-up">
+                    <div class="card-image-box">
+                        <span class="card-badge">Microscope</span>
+                        <img src="https://mikroskopshop.ch/shop/ProdukteDetails/logos/Motic-Logo-900-900.jpg" alt="Motic">
+                    </div>
+                    <div class="card-body">
+                        <h3>Motic AE 2000</h3>
+                        <p>High-resolution inverted metallurgical microscope architecture.</p>
+                        <span class="card-action-btn">View Datasheet <i class="fa-solid fa-chevron-right"></i></span>
+                    </div>
+                </a>
+
+                <a href="https://www.whrsm.net/" target="_blank" rel="noopener noreferrer" class="modern-card fade-in-up">
+                    <div class="card-image-box">
+                        <span class="card-badge">Platform</span>
+                        <img src="https://ueeshop.ly200-cdn.com/u_file/UPAA/UPAA075/2109/photo/1a8a793f37.png" alt="WHRSM">
+                    </div>
+                    <div class="card-body">
+                        <h3>WHRSM Integration</h3>
+                        <p>Smart platform systems for specialized engineering deployments.</p>
+                        <span class="card-action-btn">View Datasheet <i class="fa-solid fa-chevron-right"></i></span>
+                    </div>
+                </a>
+
+                <a href="https://www.baq.de/template.cgi?page=start&lang=en" target="_blank" rel="noopener noreferrer" class="modern-card fade-in-up">
+                    <div class="card-image-box">
+                        <span class="card-badge">Automation</span>
+                        <img src="https://www.baq.de/mobile/templates/pic/bq_logo_gross.jpg" alt="BAQ">
+                    </div>
+                    <div class="card-body">
+                        <h3>BAQ Systems</h3>
+                        <p>Automated hardness testing machinery from German engineering.</p>
+                        <span class="card-action-btn">View Datasheet <i class="fa-solid fa-chevron-right"></i></span>
+                    </div>
+                </a>
+
+                <a href="http://eng.e-greentech.co.kr/bbs/board.php?bo_table=product02&wr_id=3" target="_blank" rel="noopener noreferrer" class="modern-card fade-in-up">
+                    <div class="card-image-box">
+                        <span class="card-badge">Control</span>
+                        <img src="https://www.thescreenology.com/images/content/original-1621660295731.jpg" alt="Green Tech">
+                    </div>
+                    <div class="card-body">
+                        <h3>Green Tech</h3>
+                        <p>Advanced specialized industrial instrumentation & control units.</p>
+                        <span class="card-action-btn">View Datasheet <i class="fa-solid fa-chevron-right"></i></span>
+                    </div>
+                </a>
+
+                <a href="https://nabertherm.com/en/products/laboratory/muffle-furnaces" target="_blank" rel="noopener noreferrer" class="modern-card fade-in-up">
+                    <div class="card-image-box">
+                        <span class="card-badge">Furnace</span>
+                        <img src="https://www.cerealtester.com/images/nabertherm_logo.gif" alt="Nabertherm">
+                    </div>
+                    <div class="card-body">
+                        <h3>Nabertherm</h3>
+                        <p>State-of-the-art laboratory muffle furnaces for precise heating.</p>
+                        <span class="card-action-btn">View Datasheet <i class="fa-solid fa-chevron-right"></i></span>
+                    </div>
+                </a>
+
+                <a href="https://www.dualmfg.com/8-diameter-x-1-or-2-deep-brass-frame-sieves-with-stainless-steel-mesh" target="_blank" rel="noopener noreferrer" class="modern-card fade-in-up">
+                    <div class="card-image-box">
+                        <span class="card-badge">Manufacturing</span>
+                        <img src="https://www.dualmfg.com/content/images/thumbs/0003446_usa-standard-sieves_420.jpeg" alt="Dualmfg">
+                    </div>
+                    <div class="card-body">
+                        <h3>Dualmfg Sieves</h3>
+                        <p>USA Standard brass frame mesh sieves built for durability.</p>
+                        <span class="card-action-btn">View Datasheet <i class="fa-solid fa-chevron-right"></i></span>
+                    </div>
+                </a>
+
+                <a href="http://www.forsentek.com/product.html" target="_blank" rel="noopener noreferrer" class="modern-card fade-in-up">
+                    <div class="card-image-box">
+                        <span class="card-badge">Sensors</span>
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvIIqpiAO01l7bqtfzGeRoQQDLz9phpyGtPg&s" alt="Forsentek">
+                    </div>
+                    <div class="card-body">
+                        <h3>Forsentek</h3>
+                        <p>Precision load cells, multi-axis force sensors & weight transmitters.</p>
+                        <span class="card-action-btn">View Datasheet <i class="fa-solid fa-chevron-right"></i></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="nav-actions">
+            <button class="glow-btn" onclick="showPage3()">Proceed to Next Section <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+    </div>
+
+    <div id="page3" class="page">
+        <div class="navbar">
+            <div>M3B <span>MACHINE</span></div>
+        </div>
+
+        <div class="hero">
+            <div class="hero-content">
+                <h1>Overview Platform</h1>
+                <p>Enterprise Network Hub</p>
+            </div>
+        </div>
+
+        <div style="padding: 100px 20px; text-align: center;">
+            <h1 style="font-size: 54px; font-weight: 700; margin-bottom: 10px;">WELCOME TO STAGE 3</h1>
+            <p style="color: var(--text-muted); font-size: 20px; max-width: 600px; margin: 0 auto 40px auto; font-weight: 300;">
+                M3B Machine Engineering operates supreme architectural standard machinery distribution.
+            </p>
+            
+            <div class="nav-actions">
+                <button class="glow-btn" onclick="showPage1()"><i class="fa-solid fa-house"></i> Return to Homepage</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function enterSite() {
+            document.getElementById("open").classList.add("hide");
+            triggerFadeInUp();
+        }
+
+        /* PAGE SWITCH SYSTEM */
+        function showPage1() {
+            document.getElementById("page1").style.display = "block";
+            document.getElementById("page2").style.display = "none";
+            document.getElementById("page3").style.display = "none";
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        function showPage2() {
+            document.getElementById("page1").style.display = "none";
+            document.getElementById("page2").style.display = "block";
+            document.getElementById("page3").style.display = "none";
+            window.scrollTo({top: 0, behavior: 'smooth'});
+            setTimeout(triggerFadeInUp, 100); // ดีเลย์เปิดตัวแอนิเมชันตอนเปิดหน้า 2
+        }
+
+        function showPage3() {
+            document.getElementById("page1").style.display = "none";
+            document.getElementById("page2").style.display = "none";
+            document.getElementById("page3").style.display = "block";
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        /* ANIMATION TRIGGER */
+        function triggerFadeInUp() {
+            const elements = document.querySelectorAll('.fade-in-up');
+            elements.forEach((el, index) => {
+                setTimeout(() => {
+                    el.classList.add('active');
+                }, index * 80); // ทยอยเลื่อนขึ้นทีละใบแบบสมูท
+            });
+        }
+    </script>
 </body>
 </html>
+
+```

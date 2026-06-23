@@ -234,6 +234,11 @@
             transform: scale(1.1);
         }
 
+        /* สำหรับรูปที่กดดูได้ ให้แสดง Pointer สัญลักษณ์การคลิก */
+        .clickable-img {
+            cursor: pointer;
+        }
+
         /* Tag สำหรับแยกหมวดหมู่อุปกรณ์ */
         .card-badge {
             position: absolute;
@@ -247,6 +252,7 @@
             border-radius: 4px;
             letter-spacing: 1px;
             text-transform: uppercase;
+            z-index: 2;
         }
 
         .card-body {
@@ -271,6 +277,32 @@
             line-height: 1.5;
             margin-bottom: 20px;
             font-weight: 300;
+        }
+
+        /* ตกแต่งสไตล์รายการเครื่องจักรหน้า 3 */
+        .card-body ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .card-body ul li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .card-body ul li::before {
+            content: "\f054";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 11px;
+            color: var(--primary-neon);
         }
 
         .card-action-btn {
@@ -387,6 +419,9 @@
             cursor: pointer;
             transition: 0.3s;
             box-shadow: 0 0 15px rgba(255, 42, 42, 0.2);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .glow-btn:hover {
@@ -405,6 +440,60 @@
         .fade-in-up.active {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        /* IMAGE MODAL SYSTEM (LIGHTBOX) */
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(5, 5, 5, 0.95);
+            backdrop-filter: blur(8px);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: 12px;
+            border: 2px solid var(--primary-neon);
+            box-shadow: 0 0 40px var(--primary-glow);
+            object-fit: contain;
+            animation: zoomIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 25px; right: 40px;
+            color: #fff;
+            font-size: 36px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            width: 50px; height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .close-modal:hover {
+            color: var(--primary-neon);
+            background: rgba(255, 42, 42, 0.1);
+            border-color: var(--primary-neon);
+            box-shadow: 0 0 15px var(--primary-glow);
         }
     </style>
 </head>
@@ -630,21 +719,79 @@
 
         <div class="hero">
             <div class="hero-content">
-                <h1>Overview Platform</h1>
-                <p>Enterprise Network Hub</p>
+                <h1>Machinery Presentation</h1>
+                <p>ผลงานการติดตั้ง ตรวจสอบ และดูแลรักษาเครื่องจักรทดสอบทางวิศวกรรม</p>
             </div>
         </div>
 
-        <div style="padding: 100px 20px; text-align: center;">
-            <h1 style="font-size: 54px; font-weight: 700; margin-bottom: 10px;">WELCOME TO STAGE 3</h1>
-            <p style="color: var(--text-muted); font-size: 20px; max-width: 600px; margin: 0 auto 40px auto; font-weight: 300;">
-                M3B Machine Engineering operates supreme architectural standard machinery distribution.
-            </p>
+        <div class="section">
+            <h2 class="section-title">Site Reference & Portfolio</h2>
             
-            <div class="nav-actions">
-                <button class="glow-btn" onclick="showPage1()"><i class="fa-solid fa-house"></i> Return to Homepage</button>
+            <div class="grid-container">
+                <div class="modern-card fade-in-up">
+                    <div class="card-image-box" style="height: 240px;">
+                        <span class="card-badge">Site Track 01</span>
+                        <!-- เพิ่ม onclick สำหรับกดดูรูปใหญ่ -->
+                        <img src="1.png" alt="Industrial Machinery Track 1" class="clickable-img" onclick="openImage(this.src)">
+                    </div>
+                    <div class="card-body">
+                        <h3>โรงปูนซีเมนต์นครหลวง & สจล.</h3>
+                        <p>การติดตั้งและบำรุงรักษาชุดเครื่องมือวิเคราะห์ทางวิศวกรรมโยธาและวัสดุศาสตร์เฉพาะทาง</p>
+                        <ul>
+                            <li><strong>Air Meter:</strong> เครื่องทดสอบปริมาณลมในคอนกรีตสดเพื่อการควบคุมคุณภาพ</li>
+                            <li><strong>Industrial Oven:</strong> ตู้อบความร้อนอุตสาหกรรมความเสถียรสูง</li>
+                            <li><strong>Acme Penetrometer:</strong> เครื่องมือทดสอบระยะเวลาการก่อตัวของคอนกรีต</li>
+                            <li><strong>Universal Testing Machine:</strong> ระบบทดสอบแรงดึง-แรงกดอเนกประสงค์ ณ สถาบันเทคโนโลยีพระจอมเกล้าลาดกระบัง</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="modern-card fade-in-up">
+                    <div class="card-image-box" style="height: 240px;">
+                        <span class="card-badge">Site Track 02</span>
+                        <!-- เพิ่ม onclick สำหรับกดดูรูปใหญ่ -->
+                        <img src="2.png" alt="Industrial Machinery Track 2" class="clickable-img" onclick="openImage(this.src)">
+                    </div>
+                    <div class="card-body">
+                        <h3>มทร.กรุงเทพ & กรมช่างทหารอากาศ</h3>
+                        <p>การส่งมอบ ติดตั้งระบบซอฟต์แวร์ประมวลผลกราฟ และสอบเทียบระบบกลศาสตร์โครงสร้างความแม่นยำสูง</p>
+                        <ul>
+                            <li><strong>Universal Testing Machine (UTM):</strong> เครื่องทดสอบแรงดึงและแรงเฉือนเพื่อตรวจสอบความแข็งแรงโครงสร้างและวัสดุศาสตร์</li>
+                            <li><strong>Digital Live Signal Monitor:</strong> หน้าจอแสดงผลกราฟิก Real-time ตรวจวัดค่า Load และ Displacement ข้อมูลทางวิศวกรรมแบบละเอียด</li>
+                            <li><strong>Aeronautical Support:</strong> การดูแลเครื่องจักรทดสอบความทนทานส่วนประกอบร่วมกับกรมช่างทหารอากาศ</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="modern-card fade-in-up">
+                    <div class="card-image-box" style="height: 240px;">
+                        <span class="card-badge">Site Track 03</span>
+                        <!-- เพิ่ม onclick สำหรับกดดูรูปใหญ่ -->
+                        <img src="3.png" alt="Industrial Machinery Track 3" class="clickable-img" onclick="openImage(this.src)">
+                    </div>
+                    <div class="card-body">
+                        <h3>มหาวิทยาลัยรามคำแหง (ม.ราม)</h3>
+                        <p>การจัดตั้งและตรวจสอบสถานีเครื่องมือทดสอบการรับน้ำหนักและแรงทำลายล้างของวัสดุก่อสร้าง</p>
+                        <ul>
+                            <li><strong>Universal Testing Machine:</strong> ชุดทดสอบคุณสมบัติเชิงกลของโครงสร้างขนาดใหญ่</li>
+                            <li><strong>Compression Testing Machine:</strong> เครื่องทดสอบแรงกดคอนกรีตประสิทธิภาพสูงเพื่อตรวจสอบค่าขีดจำกัดความเค้น (Stress Target)</li>
+                            <li><strong>Data Acquisition Unit:</strong> แผงควบคุมระบบไฮดรอลิกส์พร้อมโปรแกรมจำลองภาระโหลดเชิงวิศวกรรม</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="nav-actions" style="margin-top: 50px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                <button class="glow-btn" onclick="showPage2()"><i class="fa-solid fa-chevron-left"></i> Back to Catalog</button>
+                <button class="glow-btn" onclick="showPage1()"><i class="fa-solid fa-house"></i> Return Home</button>
             </div>
         </div>
+    </div>
+
+    <!-- โครงสร้างป๊อปอัปดูรูปภาพ (Image Lightbox Modal) -->
+    <div id="imageModal" class="image-modal" onclick="closeModal()">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalTargetImg">
     </div>
 
     <script>
@@ -666,7 +813,7 @@
             document.getElementById("page2").style.display = "block";
             document.getElementById("page3").style.display = "none";
             window.scrollTo({top: 0, behavior: 'smooth'});
-            setTimeout(triggerFadeInUp, 100); // ดีเลย์เปิดตัวแอนิเมชันตอนเปิดหน้า 2
+            setTimeout(triggerFadeInUp, 100); 
         }
 
         function showPage3() {
@@ -674,19 +821,35 @@
             document.getElementById("page2").style.display = "none";
             document.getElementById("page3").style.display = "block";
             window.scrollTo({top: 0, behavior: 'smooth'});
+            setTimeout(triggerFadeInUp, 100); 
         }
 
-        /* ANIMATION TRIGGER */
         function triggerFadeInUp() {
             const elements = document.querySelectorAll('.fade-in-up');
             elements.forEach((el, index) => {
                 setTimeout(() => {
                     el.classList.add('active');
-                }, index * 80); // ทยอยเลื่อนขึ้นทีละใบแบบสมูท
+                }, index * 80); 
             });
+        }
+
+        /* LIGHTBOX FUNCTIONS (ระบบขยายรูปภาพ) */
+        function openImage(imageSrc) {
+            const modal = document.getElementById("imageModal");
+            const modalImg = document.getElementById("modalTargetImg");
+            
+            modal.style.display = "flex";
+            modalImg.src = imageSrc;
+            // ล็อกไม่ให้เลื่อนหน้าจอหลักขณะเปิดดูรูป
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeModal() {
+            const modal = document.getElementById("imageModal");
+            modal.style.display = "none";
+            // คืนค่าให้หน้าจอหลักเลื่อนได้ปกติ
+            document.body.style.overflow = "auto";
         }
     </script>
 </body>
- </html>
-
-```
+</html>
